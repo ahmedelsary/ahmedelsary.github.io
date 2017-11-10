@@ -1551,11 +1551,31 @@ const $=__webpack_require__(14);
 const openStream = __webpack_require__(15);
 const playVideo = __webpack_require__(16);
 
+let customConfig=null;
+
+
+$.ajax ({
+    url: "https://global.xirsys.net/_turn/MyFirstApp/",
+    type: "PUT",
+    async: false,
+    headers: {
+        "Authorization": "Basic " + btoa("ahmedelsary:745cd18e-c60b-11e7-9bc9-43593417e598")
+    },
+    success: function (res){
+        customConfig = res.v;
+        console.log(customConfig);
+       // console.log("ICE List: "+res.v.iceServers);
+    }
+});
+
+
+
 const  connectionObj={
     host:'nodestream02.herokuapp.com',
     port: 443,
     secure: true,
-    key:'peerjs'
+    key:'peerjs',
+    config:customConfig
 };
 
 
